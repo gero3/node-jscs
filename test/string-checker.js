@@ -258,17 +258,22 @@ describe('modules/string-checker', function() {
                 checker.formatString('var a=[1 ,2  ,3]; ')
             ).isEmpty());
         });
-
+/*
         it('disallowSpaceBeforeBinaryOperators', function() {
             var checker = new Checker();
             checker.registerDefaultRules();
             checker.configure({
-                requireSpacesInConditionalExpression: {afterTest: true, beforeConsequent: true, afterConsequent: true, beforeAlternate: true}
+                requireSpacesInConditionalExpression: {
+                    afterTest: true,
+                    beforeConsequent: true,
+                    afterConsequent: true,
+                    beforeAlternate: true
+                }
             });
             assert(checker.checkString(
                 checker.formatString('var a=a?b:c; ')
             ).isEmpty());
         });
-
+*/
     });
 });

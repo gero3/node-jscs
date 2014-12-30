@@ -108,11 +108,11 @@ describe('modules/string-checker', function() {
             checker.configure({
                 requireCurlyBraces: ['while', 'do']
             });
-            assert(checker.checkString(
-                checker.formatString(   'while(i<l) \ni++;\n' +
-                                        'do\ni++;\nwhile (i<l);' +
-                                        'try {\n i++;}\ncatch(e)\n{ e=e;}')
-            ).isEmpty());
+            var str = 'while(i<l) \ni++;\n' +
+                'do\ni++;\nwhile (i<l);' +
+                'try {\n i++;}\ncatch(e)\n{ e=e;}';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty());
         });
         it('requireSpaceAfterKeywords', function() {
             var checker = new Checker();
@@ -121,7 +121,7 @@ describe('modules/string-checker', function() {
                 requireSpaceAfterKeywords: ['if', 'else', 'for', 'while', 'do', 'switch', 'return', 'try', 'catch']
             });
             assert(checker.checkString(
-                checker.formatString(   'if(i<l){\n i++;\n}else{\n i--;\n}')
+                checker.formatString('if(i<l){\n i++;\n}else{\n i--;\n}')
             ).isEmpty());
         });
         it('requireSpacesInFunctionExpression', function() {
@@ -243,9 +243,9 @@ describe('modules/string-checker', function() {
             checker.configure({
                 requireSpaceAfterBinaryOperators: true
             });
-            assert(checker.checkString(
-                checker.formatString('if(i<l){l=l+i;if(i<l){l+=i;}}')
-            ).isEmpty());
+            var str = 'if(i<l){l=l+i;if(i<l){l+=i;}}';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
         });
 
         it('disallowSpaceBeforeBinaryOperators', function() {
@@ -275,6 +275,7 @@ describe('modules/string-checker', function() {
             ).isEmpty());
         });
 */
+    });
 
     describe('maxErrors', function() {
         beforeEach(function() {

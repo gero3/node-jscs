@@ -42,7 +42,7 @@ describe('modules/cli-config', function() {
     it('should load a custom config file', function() {
         var config = configFile.load('config.js', './test/data/configs/custom');
 
-        assert.equal(typeof config, 'object');
+        assert.equal(config.from, 'js');
     });
 
     it('should prefer package.json over .jscs.json and .jscsrc', function() {
@@ -77,11 +77,51 @@ describe('modules/cli-config', function() {
         assert.strictEqual(config.from, '.jscsrc');
     });
 
-    it('should load config from home path', function() {
-        var oldHome = process.env.HOME;
+    it('should fail load json config with comments', function() {
+        try {
+            var s = configFile.load('./test/data/configs/json/withComments.json');
+            assert(false);
+        } catch (e) {
+            assert(true);
+        }
+    });
 
+    it('should load config from home path: HOME', function() {
+        var oldHome = process.env.HOME;
+        var oldHOMEPATH = process.env.HOMEPATH;
+        var oldUSERPROFILE = process.env.USERPROFILE;
+
+        process.env.HOMEPATH = process.env.USERPROFILE = null;
         process.env.HOME = './test/data/configs/jscsrc';
         assert.equal(configFile.load(null, '/').from, 'jscsrc');
         process.env.HOME = oldHome;
+        process.env.HOMEPATH = oldHOMEPATH;
+        process.env.USERPROFILE = oldUSERPROFILE;
+    });
+
+    it('should load a config from the available home path: HOMEPATH', function() {
+        var oldHome = process.env.HOME;
+        var oldHOMEPATH = process.env.HOMEPATH;
+        var oldUSERPROFILE = process.env.USERPROFILE;
+
+        process.env.HOME = process.env.USERPROFILE = null;
+        process.env.HOMEPATH = './test/data/configs/jscsrc';
+        assert.equal(configFile.load(null, '/').from, 'jscsrc');
+        process.env.HOME = oldHome;
+        process.env.HOMEPATH = oldHOMEPATH;
+        process.env.USERPROFILE = oldUSERPROFILE;
+    });
+
+    it('should load a config from the available home path: USERPROFILE', function() {
+        var oldHome = process.env.HOME;
+        var oldHOMEPATH = process.env.HOMEPATH;
+        var oldUSERPROFILE = process.env.USERPROFILE;
+
+        process.env.HOME = process.env.HOMEPATH = null;
+        process.env.USERPROFILE = './test/data/configs/jscsrc';
+        assert.equal(configFile.load(null, '/').from, 'jscsrc');
+        process.env.HOME = oldHome;
+        process.env.HOMEPATH = oldHOMEPATH;
+        process.env.USERPROFILE = oldUSERPROFILE;
     });
 });

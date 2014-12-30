@@ -8,6 +8,7 @@ Some maintainers can have areas of responsibility:
  * @mdevils: general architecture, common rules.
  * @markelog: CLI, integration, common rules.
  * @mikesherov: ex-jshint rules, common rules.
+ * @mrjoelkemp: bug fixes, common rules.
 
 Maintaining validation rules
 ----------------------------
@@ -25,7 +26,7 @@ Rule interface:
 
     interface Rule {
         /**
-         * Configures rule before beeing used in validations.
+         * Configures rule before being used in validations.
          *
          * @param {*} ruleConfigutationValue configuration value.
          * @returns {undefined}
@@ -59,14 +60,17 @@ File `lib/string-checker.js` is used in browserify process, exporting `JscsStrin
 `string-checker.js` (and its dependencies) should not depend on `nodejs` specifics like `fs`,
 `process` and so on.
 
+Adding new presets
+------------------
+
+1. Make sure they follow the rules listed in CONTRIBUTING.md
+1. Discuss the preset on the mailing list: jscs-dev@googlegroups.com
+1. Once discussed and agreed upon, land the PR!
+
 Publishing a new version
 ---------------------------
 
-1. Determine which part of the version you are about to increase.
-   We are using `semver` (http://semver.org/).
-   For just fixing bugs, increment the patch version.
-   For new features, increment the minor version and reset patch version to zero.
-   For backwards incompatible features, increment the major version, and reset minor and patch versions, but be sure to discuss these changes with the other maintainers first.
+1. Determine which part of the version you are about to increase. See our strategy in README.md.
 1. Write changes to `CHANGELOG.md`: `npm run changelog`.
    Clean up the changelog by manually clarifying and reordering the messages. Ensure the changes are listed in following order:
    1. breaking changes.
@@ -79,6 +83,6 @@ Publishing a new version
 1. Set a new version and tag: `npm version x.x.x`.
 1. Push changes and tags: `git push && git push --tags`.
 1. Use `npm run release` to publish the new version to npm. **DO NOT USE `npm publish`**, as this will not perform the necessary prepublish tasks. If you don't have publish privileges, ask @mdevils to publish for you.
-1. Copy the changelog notes into the Github releases section located here: https://github.com/mdevils/node-jscs/releases
+1. Copy the changelog notes into the Github releases section located here: https://github.com/jscs-dev/node-jscs/releases
 1. Tweet or otherwise promote the fact that a new version has been released with a link to the changelog and npm download page.
 1. Done!

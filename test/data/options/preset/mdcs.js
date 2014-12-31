@@ -72,6 +72,6 @@ var b = [[ 1, 2 ], [ 3, 4 ], [ 5, 6 ]];
 //"requireSpaceBeforeBinaryOperators": [ "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ]
 //"requireSpaceAfterBinaryOperators": [ "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ]
 //"requireSpacesInConditionalExpression": { "afterTest": true, "beforeConsequent": true, "afterConsequent": true, "beforeAlternate": true}
-var c = (( d + e - f / g * h ) == i);
+var c = ( ( d + e - f / g * h ) == i );
 var j = k ? l : m;
 //"requireLineFeedAtFileEnd": true,

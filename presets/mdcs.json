@@ -5,6 +5,7 @@
         "beforeOpeningCurlyBrace": true
     },
     "requirePaddingNewlinesInBlocks": true,
+    "requireSpacesInsideParentheses": "all",
     "requireSpacesInsideObjectBrackets": "all",
     "requireSpacesInsideArrayBrackets": "allButNested",
     "requireSpaceBeforeBlockStatements": true,

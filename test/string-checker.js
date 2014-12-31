@@ -258,6 +258,18 @@ describe('modules/string-checker', function() {
                 checker.formatString('var a=[1 ,2  ,3]; ')
             ).isEmpty());
         });
+
+        it('requireSpacesInsideParentheses', function() {
+            var checker = new Checker();
+            checker.registerDefaultRules();
+            checker.configure({
+                requireSpacesInsideParentheses: 'all'
+            });
+            var str = 'for(var j=0;j<100;j++){fail();}\nif(i<l){l=l+i;}\n';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty());
+        });
+
 /*
         it('disallowSpaceBeforeBinaryOperators', function() {
             var checker = new Checker();

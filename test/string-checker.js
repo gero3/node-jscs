@@ -281,7 +281,6 @@ describe('modules/string-checker', function() {
             assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
         });
 
-/*
         it('disallowSpaceBeforeBinaryOperators', function() {
             var checker = new Checker();
             checker.registerDefaultRules();
@@ -293,11 +292,11 @@ describe('modules/string-checker', function() {
                     beforeAlternate: true
                 }
             });
-            assert(checker.checkString(
-                checker.formatString('var a=a?b:c; ')
-            ).isEmpty());
+            var str = 'var a=a?b:c';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
         });
-*/
+
     });
 
     describe('maxErrors', function() {

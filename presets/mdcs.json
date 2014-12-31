@@ -9,6 +9,7 @@
     "requireSpacesInsideObjectBrackets": "all",
     "requireSpacesInsideArrayBrackets": "allButNested",
     "requireSpaceBeforeBlockStatements": true,
+    "requireSpacesInForStatement": true,
     "disallowKeywords": [ "with" ],
     "requireLineFeedAtFileEnd": true,
     "validateLineBreaks": "LF",

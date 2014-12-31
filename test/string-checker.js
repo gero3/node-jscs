@@ -141,7 +141,7 @@ describe('modules/string-checker', function() {
                 requirePaddingNewlinesInBlocks: true
             });
             assert(checker.checkString(
-                checker.formatString('if(i<l){i++;}')
+                checker.formatString('if(i<l){i++;};if(i<l){//Test\ni++;}')
             ).isEmpty());
         });
         it('requireSpacesInsideObjectBrackets', function() {
@@ -268,6 +268,17 @@ describe('modules/string-checker', function() {
             var str = 'for(var j=0;j<100;j++){fail();}\nif(i<l){l=l+i;}\n';
             assert(!checker.checkString(str).isEmpty());
             assert(checker.checkString(checker.formatString(str)).isEmpty());
+        });
+
+        it('requireSpacesInForStatement', function() {
+            var checker = new Checker();
+            checker.registerDefaultRules();
+            checker.configure({
+                requireSpacesInForStatement: true
+            });
+            var str = 'for(var j=0;j<100;j++){fail();}';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
         });
 
 /*

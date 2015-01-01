@@ -10,6 +10,8 @@
     "requireSpacesInsideArrayBrackets": "allButNested",
     "requireSpaceBeforeBlockStatements": true,
     "requireSpacesInForStatement": true,
+    "requireSpacesInComputedMemberExpression":true,
+    "requireSpaceBeforeObjectValues":true,
     "disallowKeywords": [ "with" ],
     "requireLineFeedAtFileEnd": true,
     "validateLineBreaks": "LF",
@@ -17,8 +19,8 @@
 
     "requireSpaceAfterPrefixUnaryOperators": ["++", "--"],
     "requireSpaceBeforePostfixUnaryOperators": ["++", "--"],
-    "requireSpaceBeforeBinaryOperators": [ "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
-    "requireSpaceAfterBinaryOperators": [ "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
+    "requireSpaceBeforeBinaryOperators": [ "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "<<", "<<<" ,">>" , ">>>" ],
+    "requireSpaceAfterBinaryOperators": [ "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "<<", "<<<" ,">>" , ">>>"  ],
     "disallowSpaceBeforeBinaryOperators": [","],
     "requireSpacesInConditionalExpression": {
         "afterTest": true,

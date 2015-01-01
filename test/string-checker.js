@@ -281,6 +281,17 @@ describe('modules/string-checker', function() {
             assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
         });
 
+        it('requireSpacesInComputedMemberExpression', function() {
+            var checker = new Checker();
+            checker.registerDefaultRules();
+            checker.configure({
+                requireSpacesInComputedMemberExpression: true
+            });
+            var str = 'hearts[i] = hearts[test];';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
+        });
+
         it('disallowSpaceBeforeBinaryOperators', function() {
             var checker = new Checker();
             checker.registerDefaultRules();

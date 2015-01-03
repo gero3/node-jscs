@@ -292,6 +292,17 @@ describe('modules/string-checker', function() {
             assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
         });
 
+        it('validateObjectIndentation', function() {
+            var checker = new Checker();
+            checker.registerDefaultRules();
+            checker.configure({
+                validateObjectIndentation: '\t'
+            });
+            var str = '\tvar a={\n"key1":2,\n"key2":3,\n\t\t\tkey3:4,key4:5};';
+            assert(!checker.checkString(str).isEmpty());
+            assert(checker.checkString(checker.formatString(str)).isEmpty(), checker.formatString(str));
+        });
+
         it('disallowSpaceBeforeBinaryOperators', function() {
             var checker = new Checker();
             checker.registerDefaultRules();
